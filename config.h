@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "alacritty"
+#define TERMCLASS "Alacritty"
 #define BROWSER "librewolf"
 
 /* appearance */
@@ -33,8 +33,8 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
+const char *spcmd1[] = {TERMINAL, "-t", "spterm",  "--class", "spterm", "-o", "window.dimensions.columns=320", "-o", "window.dimensions.rows=68", NULL };
+const char *spcmd2[] = {TERMINAL, "-t", "spcalc", "--class", "spcalc", "-o", "window.dimensions.columns=100", "-o", "window.dimensions.rows=40", "-e", "bc", "-lq", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
@@ -251,6 +251,7 @@ static const Key keys[] = {
 	{ MODKEY,			XK_F11,		spawn,		SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
 	{ MODKEY,			XK_F12,		spawn,		SHCMD("remaps") },
 	{ MODKEY,			XK_space,	zoom,		{0} },
+	// { Mod1Mask,			XK_space,	spawn,		SHCMD("./.local/bin/i3-switch-layouts.sh") },
 	{ MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} },
 
 	{ 0,				XK_Print,	spawn,		SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
